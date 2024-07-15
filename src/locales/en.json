@@ -1,0 +1,17 @@
+{
+  "menu": {
+    "introduction": "Introduction",
+    "trendAnalysis": "Trend Analysis",
+    "comparisonAnalysis": "Comparison Analysis",
+    "report": "Report"
+  },
+  "login": {
+    "login": "Login",
+    "message1": "Please enter the correct user id",
+    "message2": "Please enter the correct password"
+  },
+  "common": {
+    "noData": "No Data"
+  },
+  "message": "hello i18n !!"
+}

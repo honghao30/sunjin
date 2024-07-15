@@ -1,0 +1,59 @@
+{
+  "name": "vsjp_homepage",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'",
+    "serve:development": "vue-cli-service serve --mode development",
+    "serve:local": "vue-cli-service serve --mode local"
+  },
+  "dependencies": {
+    "@akashmitra/vue-image-browser": "^1.2.1",
+    "@mrhanson/vue-file-preview": "^1.2.0",
+    "@progress/kendo-charts-vue-wrapper": "^2020.2.827",
+    "@progress/kendo-theme-default": "^4.21.0",
+    "@progress/kendo-ui": "^2020.2.617",
+    "apexcharts": "^3.19.3",
+    "axios": "^0.19.2",
+    "bootstrap": "^4.5.2",
+    "bootstrap-vue": "^2.16.0",
+    "core-js": "^3.6.4",
+    "element-ui": "^2.13.2",
+    "moment": "github:moment/moment",
+    "v-autosuggest": "^1.0.3",
+    "v-gallery": "^1.2.4",
+    "v-viewer": "^1.5.1",
+    "vlightbox": "^2.0.2",
+    "vue": "^2.6.11",
+    "vue-apexcharts": "^1.6.0",
+    "vue-easy-slider": "^5.3.2",
+    "vue-flux": "^5.1.9",
+    "vue-gallery-slideshow": "^1.5.0",
+    "vue-i18n": "^8.17.3",
+    "vue-moment": "^4.1.0",
+    "vue-pswipe": "^0.15.0",
+    "vue-router": "^3.1.6",
+    "vue-runtime-helpers": "^1.1.2",
+    "vue-silentbox": "^2.2.0",
+    "vue-simple-suggest": "^1.10.2",
+    "vue-wordcloud": "^1.1.1",
+    "vuex": "^3.1.3",
+    "vuex-persist": "^2.2.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.3.0",
+    "@vue/cli-service": "^4.3.0",
+    "axios-mock-adapter": "^1.18.1",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2",
+    "vue-cli-plugin-i18n": "^1.0.1",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

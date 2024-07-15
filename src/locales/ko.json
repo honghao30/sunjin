@@ -1,0 +1,17 @@
+{
+  "menu": {
+    "introduction": "소개",
+    "trendAnalysis": "트렌드 분석",
+    "comparisonAnalysis": "비교 분석",
+    "report": "리포트"
+  },
+  "login": {
+    "login": "로그인",
+    "message1": "올바른 사용자 아이디를 입력하세요",
+    "message2": "올바른 암호를 입력하세요"
+  },
+  "common": {
+    "noData": "데이터가 없습니다"
+  },
+  "message": "안녕하세요 i18n !!"
+}
