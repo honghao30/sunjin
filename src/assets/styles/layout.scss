@@ -386,3 +386,23 @@
         }
     }
 }
+
+// 버튼
+.button__wrap {
+    &.is-bottom {
+        .el-button {
+            height: 36px;
+            border-radius: 6px;
+            line-height: 0.8;
+        }
+    }
+    &.flex-end {
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+.el-button--primary {
+    background-color: #0072BC;
+    border-color: #0072BC;
+}

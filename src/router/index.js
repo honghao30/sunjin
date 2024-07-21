@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Login from '@/views/login/Login.vue'
+import Insert from "@/views/insert/Insert";
 import SearchMain from "@/views/search/SearchMain";
 import NoticeLIst from "@/views/board/NoticeList";
 import Dashboard from "@/views/dashboard/Dashboard";
@@ -15,6 +16,11 @@ const routes = [
 		name: "Login",
 		component: Login,
 	},
+	{
+		path: "/Insert",
+		name: "Insert",
+		component: Insert,
+	},		
 	{
 		path: "/SearchMain",
 		name: "SearchMain",

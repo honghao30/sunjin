@@ -1,31 +1,19 @@
 <template>
 	<div class="content__wrap">
 		<div class="page-title">
-			<h2>Search</h2>
+			<h2>Insert</h2>
 		</div>
 		<div class="content">
 			<div class="search-option__wrap">
                 <div class="search-item-rows">
                     <div class="search-item-group">
                         <div class="item-tit">
-                            Period
+                            Today
                         </div>
                         <div class="item-cont">
-                            <div class="date-select-area">
-                                <el-radio-group v-model="lastDate" size="large">
-                                    <el-radio-button label="last Week" value="last Week" />
-                                    <el-radio-button label="last Month" value="last Month" />
-                                </el-radio-group>    
-                                <div class="date-picker">
-                                    <el-input type="date" v-model="startDate" placeholder="Start Date" />     
-                                    <span>~</span>                                               
-                                    <el-input type="date" v-model="endDate" placeholder="End Date" /> 
-                                </div>                                                                            
-                            </div>
+                            <el-input type="date" v-model="todayData" placeholder="today Date" />    
                         </div>
-                    </div>
-                </div>
-                <div class="search-item-rows">
+                    </div>                    
                     <div class="search-item-group">
                         <div class="item-tit">
                             Province
@@ -46,6 +34,8 @@
                             </el-select>
                         </div>
                     </div>
+                </div>
+                <div class="search-item-rows">
                     <div class="search-item-group">
                         <div class="item-tit">
                             District
@@ -65,9 +55,7 @@
                                 />
                             </el-select>  
                         </div>
-                    </div>                    
-                </div>
-                <div class="search-item-rows">
+                    </div>   
                     <div class="search-item-group">
                         <div class="item-tit">
                             Village
@@ -88,6 +76,8 @@
                             </el-select>
                         </div>
                     </div>
+                </div>
+                <div class="search-item-rows">
                     <div class="search-item-group">
                         <div class="item-tit">
                             Farm
@@ -107,9 +97,7 @@
                                 />
                             </el-select>  
                         </div>
-                    </div>                    
-                </div>
-                <div class="search-item-rows">
+                    </div>  
                     <div class="search-item-group">
                         <div class="item-tit">
                             Pond
@@ -130,142 +118,93 @@
                             </el-select>
                         </div>
                     </div>    
-                    <div class="button__wrap">
-                        <el-button type="primary">검색</el-button>
-                    </div>              
-                </div>                         
+                </div>                       
             </div>
             <!-- 검색 -->
             <div class="tabs-cont__wrap">
                 <el-tabs v-model="activeName" type="border-card" @tab-click="handleClick">
-                    <el-tab-pane label="Date" name="first">
-                        <div class="scroll-content">
-                            <table class="table table-list">
+                    <el-tab-pane label="Water Env." name="first">
+                        <div class="detail-data">
+                            <table class="table table-body">
                                 <colgroup>
-                                    <col width="16%" />
-                                    <col width="16%" />
-                                    <col width="16%" />
-                                    <col width="16%" />
-                                    <col width="17%" />
-                                    <col width="" />                                    
+                                    <col width="50%" />
+                                    <col width="" />
                                 </colgroup>
-                                <thead>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Images</th>
-                                    <th scope="col">Vibrio Water</th>
-                                    <th scope="col">Vibrio Liver</th>
-                                    <th scope="col">Vibrio Gut</th>
-                                    <th scope="col">Write</th>                                    
-                                </thead>
                                 <tbody>
-                                    <tr
-        
-                                    >
-                                        <td>2024/07/19</td>
-                                        <td>
-                                            2
-                                        </td>
-                                        <td>
-                                            <el-button @click="handleDetailView()">
-                                                상세내용
-                                            </el-button>                                            
-                                        </td>
-                                        <td></td>
-                                        <td></td>
-                                        <td class="text-l"></td>
+                                    <tr>
+                                        <th scope="row">Salinity</th>
+                                        <td>0.10</td>
                                     </tr>
+                                    <tr>
+                                        <th scope="row">pH</th>
+                                        <td>7.61</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Vibrio in water</th>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Vibrio in Liver & Gut</th>
+                                        <td></td>
+                                    </tr>   
+                                    <tr>
+                                        <th scope="row">Shrimp Health</th>
+                                        <td></td>
+                                    </tr>  
+                                    <tr>
+                                        <th scope="row">Salinity</th>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">pH</th>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Vibrio in water</th>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Vibrio in Liver & Gut</th>
+                                        <td></td>
+                                    </tr>   
+                                    <tr>
+                                        <th scope="row">Shrimp Health</th>
+                                        <td></td>
+                                    </tr>                                                                                                                                                              
                                 </tbody>
-                            </table>                            
-
+                            </table>
                         </div>
                     </el-tab-pane>
-                    <el-tab-pane label="Trend Graph" name="second">
+                    <el-tab-pane label="Vibrio" name="second">
                         <div class="graph-area">
                             그래프
                         </div>
                     </el-tab-pane>
+                    <el-tab-pane label="Health" name="third">
+                        <div class="graph-area">
+                            그래프2
+                        </div>
+                    </el-tab-pane>              
+                    <el-tab-pane label="Photo" name="fourth">
+                        <div class="graph-area">
+                            그래프3
+                        </div>
+                    </el-tab-pane>                           
                 </el-tabs>
             </div>
-		</div>
-    <!-- Detail Modal -->
-        <div class="detail-view-modal__wrap"
-            v-if="detailModal"
-        >
-            <div class="detail-view-modal">
-                <div class="modal-header">
-                    <h2>Vibrio Wate Detail</h2>
-                    <el-button class="btn-x"
-                        @click="handleClose()"
-                        circle 
-                    />
-                </div>
-                <div class="modal-content">
-                    <div class="data-select">
-                        <el-input type="date" v-model="searchData" placeholder="Date" />
-                    </div>
-                    <div class="detail-data">
-                        <table class="table table-body">
-                            <colgroup>
-                                <col width="40%" />
-                                <col width="" />
-                            </colgroup>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Salinity</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">pH</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Vibrio in water</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Vibrio in Liver & Gut</th>
-                                    <td></td>
-                                </tr>   
-                                <tr>
-                                    <th scope="row">Shrimp Health</th>
-                                    <td></td>
-                                </tr>  
-                                <tr>
-                                    <th scope="row">Salinity</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">pH</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Vibrio in water</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Vibrio in Liver & Gut</th>
-                                    <td></td>
-                                </tr>   
-                                <tr>
-                                    <th scope="row">Shrimp Health</th>
-                                    <td></td>
-                                </tr>                                                                                                                                                              
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- 테이블 -->
-                    <div class="image-slider__wrap">
-                        <SwiperSlide />
-                    </div>
-                </div>
+            <div class="button__wrap is-bottom flex-end">
+                <el-button type="info">Cancel</el-button>
+                <el-button type="primary">Save</el-button>
             </div>
-        </div>
+		</div>
+
 	</div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 
+const todayData = ref('2024/07/20')
 const startDate = ref('')
 const endDate = ref('')
 const lastDate = ref('')
@@ -274,7 +213,7 @@ const activeName = ref('first')
 const SelectValue = ref('')
 const dialogVisible = ref(false)
 const detailModal = ref(true)
-const searchData = ref('2024/07/20')
+
 
 const handleClose = () => {  
     detailModal.value = false;
