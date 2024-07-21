@@ -11,6 +11,8 @@ import {setMock} from './mock/index';
 
 import i18n from './i18n'
 
+import './assets/styles/index.scss'
+
 Vue.use(ElementUI, {locale});
 Vue.config.productionTip = false;
 
