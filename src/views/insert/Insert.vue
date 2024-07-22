@@ -342,7 +342,8 @@
 		</div>
         <el-dialog            
             :visible.sync="dialogVisible"
-            width="50%"
+            class="data-insert"
+            width="40%"
         >
         <div class="modal-content">
             <div class="data-insert-form">
@@ -353,8 +354,8 @@
             </div>
         </div>
         <span slot="footer" class="dialog-footer">
-            <el-button>Prev</el-button>
-            <el-button>Next</el-button>
+            <el-button type="info">Prev</el-button>
+            <el-button type="info">Next</el-button>
             <el-button type="primary" @click="dialogVisible = false">OK</el-button>
         </span>
         </el-dialog>
@@ -371,8 +372,8 @@ const lastDate = ref('')
 const province = ref('')
 const activeName = ref('first')
 const SelectValue = ref('')
-const dialogVisible = ref(true)
-const detailModal = ref(true)
+const dialogVisible = ref(false)
+const detailModal = ref(false)
 const radio = ref('1');
 const num = ref('2');
 
@@ -404,6 +405,10 @@ const handleClick = () => {
 
 const handleDetailView = () => {
     detailModal.value = true;
+}
+
+const handleChange = (value) => {
+        console.log(value);
 }
 
 const options = [
