@@ -65,34 +65,49 @@
 //board
 .table-list {
     width: 100%;
-    th {
-        background-color: #F7F8FA;
-        height: 36px;
-        vertical-align: middle;
-        text-align: center;
-        border-top: 1px solid #AEB7C6;
-        border-bottom: 1px solid #E1E3E9;
-        @include fontoption(14px, #717B8A, bold, 14px);
-    }
-    td {        
-        padding: 12px 0;
-        vertical-align: middle;
-        border-bottom: 1px solid #E1E3E9;
-        @include fontoption(13px, #717B8A, 300, 13px);
-        letter-spacing: -0.04em;
-        text-align: center;
-        &.text-l {
-            padding-left: 10px;
-            padding-right: 10px;
-            text-align: left;
-            a {
-                display: flex;
-                flex-wrap: wrap;
-                @include ellipsis(2);
-                line-height: 16px;
-            }
+    thead {
+        th {
+            background-color: #F7F8FA;
+            height: 36px;
+            vertical-align: middle;
+            text-align: center;
+            border-top: 1px solid #AEB7C6;
+            border-bottom: 1px solid #E1E3E9;
+            @include fontoption(14px, #717B8A, bold, 14px);
         }
-    }    
+    }
+    tbody {
+        td {        
+            padding: 12px 0;
+            vertical-align: middle;
+            border-bottom: 1px solid #E1E3E9;
+            @include fontoption(13px, #717B8A, 300, 13px);
+            letter-spacing: -0.04em;
+            text-align: center;
+            &.text-l {
+                padding-left: 10px;
+                padding-right: 10px;
+                text-align: left;
+                a {
+                    display: flex;
+                    flex-wrap: wrap;
+                    @include ellipsis(2);
+                    line-height: 16px;
+                }
+            }
+        }  
+    }
+    tfoot {
+        td {
+            background-color: #F7F8FA;
+            height: 36px;
+            vertical-align: middle;
+            text-align: center;
+            border-top: 1px solid #AEB7C6;
+            border-bottom: 1px solid #E1E3E9;
+            @include fontoption(14px, #717B8A, bold, 14px);
+        }
+    }
 }
 
 .table-body {
@@ -405,4 +420,9 @@
 .el-button--primary {
     background-color: #0072BC;
     border-color: #0072BC;
+}
+
+.data-insert-form {
+    display: flex;
+    align-items: center;    
 }
