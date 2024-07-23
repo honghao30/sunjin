@@ -4,7 +4,7 @@
 			<img src="../../assets/image/common/logo_color.svg" alt="" />
 		</div>
 		<div class="login__form">
-			<form>
+			<form @submit.prevent="handleLogin">
 				<div class="input-item__wrap">
 					<i class="icon-io">
 						<svg xmlns="http://www.w3.org/2000/svg" width="11" height="10" viewBox="0 0 11 10" fill="none">
@@ -25,7 +25,7 @@
 					<el-input placeholder="Password" v-model="passWord" show-password></el-input>
 				</div>
 				<div class="button__wrap">
-					<el-button type="primary">Login</el-button>
+					<el-button type="primary" @click="handleLogin">Login</el-button>
 				</div>
 			</form>
 		</div>
@@ -33,18 +33,19 @@
 </template>
 
 <script>
-
-export default {
-	name: "Login",
-	data() {
-		return {
-			userId,
-			passWord,
-		};
-	},
-	methods: {}
-};
+	export default {
+		name: "Login",
+		data() {
+			return {
+				userId: '',
+				passWord: '',
+			};
+		},
+		methods: {
+			handleLogin() {
+				this.$router.push('/dashboard'); 
+			}
+		}
+	};
 </script>
 
-<style scoped src="@/assets/css/style.css">
-</style>

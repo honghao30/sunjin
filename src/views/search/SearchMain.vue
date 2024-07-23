@@ -255,7 +255,25 @@
                     </div>
                     <!-- 테이블 -->
                     <div class="image-slider__wrap">
-                        <SwiperSlide />
+                        <swiper :options="swiperOption">
+                            <swiper-slide>
+                                <img src="https://via.placeholder.com/600x300?text=Slide+1" alt="Slide 1">
+                            </swiper-slide>
+                            <swiper-slide>
+                                <img src="https://via.placeholder.com/600x300?text=Slide+2" alt="Slide 2">
+                            </swiper-slide>
+                            <swiper-slide>
+                                <img src="https://via.placeholder.com/600x300?text=Slide+3" alt="Slide 3">
+                            </swiper-slide>
+                            <!-- Add more slides as needed -->
+
+                            <!-- Add Pagination -->
+                            <div class="swiper-pagination" slot="pagination"></div>
+
+                            <!-- Add Navigation -->
+                            <div class="swiper-button-next" slot="button-next"></div>
+                            <div class="swiper-button-prev" slot="button-prev"></div>
+                        </swiper>                        
                     </div>
                 </div>
             </div>
@@ -263,67 +281,73 @@
 	</div>
 </template>
 
-<script setup>
-import { ref } from 'vue'
-
-const startDate = ref('')
-const endDate = ref('')
-const lastDate = ref('')
-const province = ref('')
-const activeName = ref('first')
-const SelectValue = ref('')
-const dialogVisible = ref(false)
-const detailModal = ref(true)
-const searchData = ref('2024/07/20')
-
-const handleClose = () => {  
-    detailModal.value = false;
-}
-
-const handleClick = () => {
-    console.log('handleClick')
-}
-
-const handleDetailView = () => {
-    detailModal.value = true;
-}
-
-const swiperOption =  ref({
-    pagination: {
-        el: '.swiper-pagination',
-        type: 'fraction'
+<script>
+import { Swiper as swiper, SwiperSlide as swiperSlide } from 'vue-awesome-swiper';
+// Import Swiper styles
+import 'swiper/css/swiper.css';
+export default {
+    name: 'SwiperComponent',
+    components: {
+        swiper,
+        swiperSlide
     },
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+    data() {
+        return {
+        startDate: '',
+        endDate: '',
+        lastDate: '',
+        province: '',
+        activeName: 'first',
+        SelectValue: '',
+        dialogVisible: false,
+        detailModal: true,
+        searchData: '2024/07/20',
+        swiperOption: {
+            pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction'
+            },
+            navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+            }
+        },
+        options: [
+            {
+            value: 'Kiên Giang',
+            label: 'Kiên Giang'
+            },
+            {
+            value: 'Option2',
+            label: 'Option2'
+            },
+            {
+            value: 'Option3',
+            label: 'Option3'
+            },
+            {
+            value: 'Option4',
+            label: 'Option4'
+            },
+            {
+            value: 'Option5',
+            label: 'Option5'
+            }
+        ]
+        };
     },
-        // Other Swiper options
-});
-
-const options = [
-    {
-        value: 'Kiên Giang',
-        label: 'Kiên Giang',
-    },
-    {
-        value: 'Option2',
-        label: 'Option2',
-    },
-    {
-        value: 'Option3',
-        label: 'Option3',
-    },
-    {
-        value: 'Option4',
-        label: 'Option4',
-    },
-    {
-        value: 'Option5',
-        label: 'Option5',
-    },
-]
-
-
+    methods: {
+        handleClose() {
+        this.detailModal = false;
+        },
+        handleClick() {
+        console.log('handleClick');
+        },
+        handleDetailView() {
+        this.detailModal = true;
+        }
+    }
+    };
 </script>
 
 <style scoped>

@@ -552,11 +552,12 @@
                 gap: 10px;
                 .input-item__wrap {
                     position: relative;
-                    .ico-ico {
+                    .icon-io {
                         position: absolute;
-                        left: 10px;
+                        left: 17px;
                         top: 50%;
                         transform: translateY(-50%);
+                        z-index: 15;
                     }
                 }
             }
@@ -569,7 +570,7 @@
                     height: 40px;
                     border-radius: 67px; 
                     color: #ddd;
-                    padding-left: 30px;
+                    padding-left: 37px;
                 }
             }
         }

@@ -32,7 +32,7 @@ const routes = [
 		component: NoticeLIst,
 	},	
 	{
-		path: "/dashboard",
+		path: "/Dashboard",
 		name: "Dashboard",
 		component: Dashboard,
 	},

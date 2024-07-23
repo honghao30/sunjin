@@ -13,7 +13,10 @@ import i18n from './i18n'
 
 import './assets/styles/index.scss'
 
-Vue.use(ElementUI, {locale});
+import VueAwesomeSwiper from 'vue-awesome-swiper';
+import 'swiper/css/swiper.css';
+
+Vue.use(ElementUI, {locale}).use(VueAwesomeSwiper);
 Vue.config.productionTip = false;
 
 Vue.prototype.$EventBus = new Vue();
