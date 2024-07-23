@@ -6,7 +6,7 @@
 		<div class="content">
 			<div class="search-option__wrap">
                 <div class="search-item-rows">
-                    <div class="search-item-group">
+                    <div class="search-item-group gap6">
                         <div class="item-tit">
                             Period
                         </div>
@@ -159,16 +159,13 @@
                                 </thead>
                                 <tbody>
                                     <tr
-        
+                                        @click="handleDetailView()"
                                     >
                                         <td>2024/07/19</td>
                                         <td>
                                             2
                                         </td>
-                                        <td>
-                                            <el-button @click="handleDetailView()">
-                                                상세내용
-                                            </el-button>                                            
+                                        <td>                                         
                                         </td>
                                         <td></td>
                                         <td></td>
@@ -206,7 +203,7 @@
                     <div class="detail-data">
                         <table class="table table-body">
                             <colgroup>
-                                <col width="40%" />
+                                <col width="50%" />
                                 <col width="" />
                             </colgroup>
                             <tbody>
@@ -262,12 +259,6 @@
                             <swiper-slide>
                                 <img src="https://via.placeholder.com/600x300?text=Slide+2" alt="Slide 2">
                             </swiper-slide>
-                            <swiper-slide>
-                                <img src="https://via.placeholder.com/600x300?text=Slide+3" alt="Slide 3">
-                            </swiper-slide>
-                            <!-- Add more slides as needed -->
-
-                            <!-- Add Pagination -->
                             <div class="swiper-pagination" slot="pagination"></div>
 
                             <!-- Add Navigation -->
@@ -300,7 +291,7 @@ export default {
         activeName: 'first',
         SelectValue: '',
         dialogVisible: false,
-        detailModal: true,
+        detailModal: false,
         searchData: '2024/07/20',
         swiperOption: {
             pagination: {

@@ -209,16 +209,16 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>                                        
-                                </tr>   
-                                <tfoot>
-                                    <tr>
-                                        <td>Total</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>                                        
-                                    </tr>  
-                                </tfoot>                                                                                                     
+                                </tr> 
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>Total</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>                                        
+                                </tr>                                    
+                            </tfoot>
                         </table> 
                     </el-tab-pane>
                     <el-tab-pane label="Health" name="third">
@@ -334,10 +334,10 @@
                         </table>
                     </el-tab-pane>                           
                 </el-tabs>
-            </div>
-            <div class="button__wrap is-bottom flex-end">
-                <el-button type="info">Cancel</el-button>
-                <el-button type="primary">Save</el-button>
+                <div class="button__wrap is-bottom flex-end">
+                    <el-button type="info">Cancel</el-button>
+                    <el-button type="primary">Save</el-button>
+                </div>                
             </div>
 		</div>
         <el-dialog            

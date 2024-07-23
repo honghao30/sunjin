@@ -212,6 +212,14 @@
         align-items: center; 
         justify-content: space-between;
         width: 50%;
+        &.gap6 {
+            .item-cont {
+                
+                .el-radio-button__inner {
+                    padding: 9px 10px !important;
+                }
+            }
+        }
         &:only-child {
             width: 100%;
         }
@@ -225,7 +233,7 @@
             flex:1;
             padding-right: 16px;
             @media #{$phone} {
-                width: 100%;
+                width: calc(100% - 80px);
                 padding-right: 0px;
             }
         }
@@ -271,7 +279,16 @@
     }
 }
 
-
+.scroll-content {
+    @media #{$phone} {
+        width: 100%;
+        overflow-y: scroll;
+        table {
+            table-layout: fixed;
+            width: 150%;
+        }
+    }
+}
 
 // el reset
 .el-input > .el-input__inner {
@@ -449,6 +466,39 @@
     }
 } 
 
+
+.swiper-pagination {
+    position: relative;
+    bottom:0;
+    .swiper-pagination-current {
+        font-weight: 700;
+        color:#000;
+    }
+}
+.swiper-wrapper {
+    margin-bottom: 10px;
+}
+.swiper-button-prev, 
+.swiper-button-next {
+    width:18px;
+    height:18px;
+    background-size: 18px auto;
+    bottom: 0;
+    top: auto;
+    &::after {
+        display: none;
+    }
+}
+.swiper-button-prev {
+    background: url('../image/icon/icon_arrow_left.svg') no-repeat center;    
+    left: 50%;
+    margin-left: -40px;
+}
+.swiper-button-next {
+    background: url('../image/icon/ico_arrow_right.svg') no-repeat center;    
+    right: 50%;
+    margin-right: -40px;    
+}
 //lnb menu
 .side-menu__wrap {
     position: fixed;
@@ -465,11 +515,6 @@
         display: block;
         opacity: 1;
         transition: all 0.3s;
-        .menu__wrap--inner {
-            left:0;
-            transition: all 0.3s;
-        }
-
     }
     .menu__wrap--inner {
         position: fixed;
@@ -480,6 +525,10 @@
         left: -100%;
         top: 0;
         transition: all 0.3s;
+        &.is-active {
+            left:0;            
+            transition: all 0.3s;
+        }
         .menu-header {
             height: 80px;
             position: relative;
@@ -515,6 +564,8 @@
     }
 }
 
+
+// 대시보드
 .link-group {
     display: flex;
     flex-direction: column;
@@ -530,6 +581,7 @@
     }
 }
 
+// 로그인
 .login__wrap {
     width: 100%;
     height: 100vh;
@@ -542,7 +594,8 @@
         width: 100%;
         max-width: 60%;
         .login-page__logo {
-            text-align: center;        
+            text-align: center;    
+            margin-bottom: 60px;    
         }
         .login__form {
             margin-top: 24px;
