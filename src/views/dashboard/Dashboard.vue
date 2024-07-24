@@ -7,16 +7,19 @@
 			<div class="card-group">
 				<el-col>
 					<el-card shadow="hover">
+						<i class="el-icon-folder-add"></i>
 						<el-button type="text" @click="goToDataInsert">DATA INSERT</el-button>
 					</el-card>
 				</el-col>
 				<el-col>
 					<el-card shadow="hover">
+						<i class="el-icon-search"></i>
 						<el-button type="text" @click="goToSearch">SEARCH</el-button>
 					</el-card>
 				</el-col>
 				<el-col>
 					<el-card shadow="hover">
+						<i class="el-icon-postcard"></i>
 						<el-button type="text" @click="goToNotice">Notice</el-button>
 					</el-card>
 				</el-col>

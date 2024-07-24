@@ -159,7 +159,7 @@
                                 </thead>
                                 <tbody>
                                     <tr
-                                        @click="handleDetailView()"
+                                        @click="dialogVisible = true"
                                     >
                                         <td>2024/07/19</td>
                                         <td>
@@ -185,18 +185,13 @@
             </div>
 		</div>
     <!-- Detail Modal -->
-        <div class="detail-view-modal__wrap"
-            v-if="detailModal"
+        <el-dialog
+            title="Vibrio Wate Detail"
+            :visible.sync="dialogVisible"
+            class="detail-view-modal__wrap"
+            width="90vw"
         >
-            <div class="detail-view-modal">
-                <div class="modal-header">
-                    <h2>Vibrio Wate Detail</h2>
-                    <el-button class="btn-x"
-                        @click="handleClose()"
-                        circle 
-                    />
-                </div>
-                <div class="modal-content">
+        <div class="modal-content">
                     <div class="data-select">
                         <el-input type="date" v-model="searchData" placeholder="Date" />
                     </div>
@@ -267,8 +262,7 @@
                         </swiper>                        
                     </div>
                 </div>
-            </div>
-        </div>
+        </el-dialog>
 	</div>
 </template>
 

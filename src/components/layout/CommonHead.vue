@@ -2,7 +2,9 @@
     <div class="header__wrap">
         <div class="top-navigation">
             <button type="button" class="btn-hamburger" @click="sideOpenHandle">
-                <i></i>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </button>
         </div>
         <div class="title-area">
@@ -64,7 +66,7 @@ export default {
             }, 200);
         },
         sideCloseHandle() {
-            this.sideMenu = true;
+            this.sideMenu = false;
             setTimeout(() => {
                 this.sideMenuBg = false;    
             }, 200);                        

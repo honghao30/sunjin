@@ -333,7 +333,7 @@
                             </tbody>
                         </table>
                     </el-tab-pane>                           
-                </el-tabs>
+                </el-tabs> 
                 <div class="button__wrap is-bottom flex-end">
                     <el-button type="info">Cancel</el-button>
                     <el-button type="primary">Save</el-button>
@@ -359,81 +359,82 @@
             <el-button type="primary" @click="dialogVisible = false">OK</el-button>
         </span>
         </el-dialog>
+        
 	</div>
 </template>
 
-<script setup>
-import { ref } from 'vue'
-
-const todayData = ref('2024/07/20')
-const startDate = ref('')
-const endDate = ref('')
-const lastDate = ref('')
-const province = ref('')
-const activeName = ref('first')
-const SelectValue = ref('')
-const dialogVisible = ref(false)
-const detailModal = ref(false)
-const radio = ref('1');
-const num = ref('2');
-
-const fileList = ref([
-    {name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}, 
-    {name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}]
-)
-
-const handleRemove = (file, fileList) => {
-    console.log(file, fileList);
-}
-const handlePreview = (file) => {
-    console.log(file);
-}
-const handleExceed = (files, fileList) => {
-    this.$message.warning(`The limit is 3, you selected ${files.length} files this time, add up to ${files.length + fileList.length} totally`);
-}
-const beforeRemove = (file, fileList) => {
-    return this.$confirm(`Cancel the transfert of ${ file.name } ?`);
-}
-
-const handleClose = () => {  
-    detailModal.value = false;
-}
-
-const handleClick = () => {
-    console.log('handleClick')
-}
-
-const handleDetailView = () => {
-    detailModal.value = true;
-}
-
-const handleChange = (value) => {
+<script>
+export default {
+    data() {
+        return {
+        todayData: '2024/07/20',
+        startDate: '',
+        endDate: '',
+        lastDate: '',
+        province: '',
+        activeName: 'first',
+        SelectValue: '',
+        dialogVisible: false,
+        detailModal: false,
+        radio: '1',
+        num: '2',
+        fileList: [
+            { name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100' },
+            { name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100' }
+        ],
+        options: [
+            {
+            value: 'Kiên Giang',
+            label: 'Kiên Giang',
+            },
+            {
+            value: 'Option2',
+            label: 'Option2',
+            },
+            {
+            value: 'Option3',
+            label: 'Option3',
+            },
+            {
+            value: 'Option4',
+            label: 'Option4',
+            },
+            {
+            value: 'Option5',
+            label: 'Option5',
+            },
+        ],
+        };
+    },
+    methods: {
+        handleRemove(file, fileList) {
+        console.log(file, fileList);
+        },
+        handlePreview(file) {
+        console.log(file);
+        },
+        handleExceed(files, fileList) {
+        this.$message.warning(`The limit is 3, you selected ${files.length} files this time, add up to ${files.length + fileList.length} totally`);
+        },
+        beforeRemove(file, fileList) {
+        return this.$confirm(`Cancel the transfert of ${file.name} ?`);
+        },
+        handleClose() {
+        this.detailModal = false;
+        },
+        handleClick() {
+        console.log('handleClick');
+        },
+        handleDetailView() {
+        this.detailModal = true;
+        },
+        handleChange(value) {
         console.log(value);
-}
-
-const options = [
-    {
-        value: 'Kiên Giang',
-        label: 'Kiên Giang',
+        },
     },
-    {
-        value: 'Option2',
-        label: 'Option2',
-    },
-    {
-        value: 'Option3',
-        label: 'Option3',
-    },
-    {
-        value: 'Option4',
-        label: 'Option4',
-    },
-    {
-        value: 'Option5',
-        label: 'Option5',
-    },
-]
+};
 </script>
+
 
 <style scoped>
 

@@ -11,9 +11,11 @@
 					<col width="30%" />
 				</colgroup>
 				<thead>
-					<th scope="col">Date</th>
-					<th scope="col">Title</th>
-					<th scope="col">Write</th>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Title</th> 
+						<th scope="col">Write</th>
+					</tr>
 				</thead>
 				<tbody>
 					<tr
