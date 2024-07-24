@@ -573,11 +573,53 @@
     padding: 64px 16px 32px; 
     max-width: 70%;
     margin: 0 auto;
+    .card-group {
+        display: flex;
+        gap: 16px;
+        @media #{$phone} {
+            flex-direction: column;
+            gap: 12px;
+        }
+        .el-col {
+            &:nth-child(1) {
+                .el-card {
+                    background-color: #E72A10;    
+                }                
+                
+            }
+            &:nth-child(2) {
+                .el-card {
+                    background-color: #E8A038;
+                }                 
+                
+            }   
+            &:nth-child(3) {
+                .el-card {
+                    background-color: #9AC143;
+                }
+            }              
+            
+        }        
+    }
     .el-button--text {
         width: 100%;
     }
     .logo {
         text-align: center;
+    }
+    .el-button--text {
+        @include fontoption(16px,#fff, 600, 18px);
+    }
+    .el-card {
+        aspect-ratio: 1 /1;
+        @media #{$phone} {
+            aspect-ratio: 1 / 0.5;
+        }
+        .el-card__body {
+            height: 100%;
+            display: flex;
+            align-items: center;                    
+        }
     }
 }
 
@@ -592,7 +634,10 @@
     background-color: rgba(243,244, 246, 0.9);
     .login-form__wrap {
         width: 100%;
-        max-width: 60%;
+        max-width: 40%;
+        @media #{$phone} {
+            max-width: 60%;
+        }
         .login-page__logo {
             text-align: center;    
             margin-bottom: 60px;    
@@ -631,6 +676,7 @@
             margin-top: 32px;
             button {
                 width: 100%;
+                border-radius: 67px;
             }
         }
     }

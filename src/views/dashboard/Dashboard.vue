@@ -4,21 +4,23 @@
 			<div class="logo">
 			<img src="../../assets/image/common/logo_color.svg" alt="" />
 			</div>
-			<el-col>
-				<el-card shadow="hover">
-					<el-button type="text" @click="goToDataInsert">DATA INSERT</el-button>
-				</el-card>
-			</el-col>
-			<el-col>
-				<el-card shadow="hover">
-					<el-button type="text" @click="goToSearch">SEARCH</el-button>
-				</el-card>
-			</el-col>
-			<el-col>
-				<el-card shadow="hover">
-					<el-button type="text" @click="goToNotice">Notice</el-button>
-				</el-card>
-			</el-col>
+			<div class="card-group">
+				<el-col>
+					<el-card shadow="hover">
+						<el-button type="text" @click="goToDataInsert">DATA INSERT</el-button>
+					</el-card>
+				</el-col>
+				<el-col>
+					<el-card shadow="hover">
+						<el-button type="text" @click="goToSearch">SEARCH</el-button>
+					</el-card>
+				</el-col>
+				<el-col>
+					<el-card shadow="hover">
+						<el-button type="text" @click="goToNotice">Notice</el-button>
+					</el-card>
+				</el-col>
+			</div>
 		</div>
 	</div>
 </template>
