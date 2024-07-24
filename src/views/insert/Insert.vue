@@ -11,7 +11,11 @@
                             Today
                         </div>
                         <div class="item-cont">
-                            <el-input type="date" v-model="todayData" placeholder="today Date" />    
+                            <el-date-picker
+                                v-model="todayData"
+                                type="date"
+                                placeholder="today Date">
+                            </el-date-picker>
                         </div>
                     </div>                    
                     <div class="search-item-group">
@@ -342,8 +346,7 @@
 		</div>
         <el-dialog            
             :visible.sync="dialogVisible"
-            class="data-insert"
-            width="40%"
+            class="data-insert no-title"            
         >
         <div class="modal-content">
             <div class="data-insert-form">
@@ -374,7 +377,7 @@ export default {
         province: '',
         activeName: 'first',
         SelectValue: '',
-        dialogVisible: false,
+        dialogVisible: true,
         detailModal: false,
         radio: '1',
         num: '2',

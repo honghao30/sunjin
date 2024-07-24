@@ -409,7 +409,7 @@
     }
     .modal-content {
         .data-select {
-            max-width: 30%;
+            max-width: 50%;
             margin-bottom: 16px;
         }
     }
@@ -483,12 +483,25 @@
 }
 .el-dialog__wrapper {
     &.data-insert {
+        &.no-title {
+            .el-dialog__headerbtn {
+                top: 6px;
+            }            
+        }
+
+        .el-dialog {
+            width: 60%;
+            @media #{$phone} {
+                width: 90%;
+            }
+        }
         .el-dialog__body {
             padding-bottom: 12px;
         }
     }
 } 
-
+.el-date-editor.el-input, 
+.el-date-editor.el-input__inner {width: 100%;}
 
 .swiper-pagination {
     position: relative;

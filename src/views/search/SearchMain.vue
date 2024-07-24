@@ -193,7 +193,12 @@
         >
         <div class="modal-content">
                     <div class="data-select">
-                        <el-input type="date" v-model="searchData" placeholder="Date" />
+                        <el-date-picker
+                            v-model="searchData"
+                            type="date"
+                            placeholder="Date">
+                        </el-date-picker>                        
+                        
                     </div>
                     <div class="detail-data">
                         <table class="table table-body">
