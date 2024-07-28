@@ -6,21 +6,27 @@
 			</div>
 			<div class="card-group">
 				<el-col>
-					<el-card shadow="hover">
-						<i class="el-icon-folder-add"></i>
-						<el-button type="text" @click="goToDataInsert">DATA INSERT</el-button>
+					<el-card shadow="hover">						
+						<el-button type="text" @click="goToDataInsert">
+							<i class="el-icon-folder-add"></i>
+							<div class="text">DATA INSERT</div>
+						</el-button>
 					</el-card>
 				</el-col>
 				<el-col>
-					<el-card shadow="hover">
-						<i class="el-icon-search"></i>
-						<el-button type="text" @click="goToSearch">SEARCH</el-button>
+					<el-card shadow="hover">						
+						<el-button type="text" @click="goToSearch">
+							<i class="el-icon-search"></i>
+							<div class="text">SEARCH</div>
+						</el-button>
 					</el-card>
 				</el-col>
 				<el-col>
-					<el-card shadow="hover">
-						<i class="el-icon-postcard"></i>
-						<el-button type="text" @click="goToNotice">Notice</el-button>
+					<el-card shadow="hover">						
+						<el-button type="text" @click="goToNotice">
+							<i class="el-icon-postcard"></i>							
+							<div class="text">Notice</div>
+						</el-button>
 					</el-card>
 				</el-col>
 			</div>

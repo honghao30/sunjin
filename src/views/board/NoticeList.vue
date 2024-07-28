@@ -4,32 +4,32 @@
 			<h2>Notice</h2>
 		</div>
 		<div class="content">
-			<table class="table table-list">
-				<colgroup>
-					<col width="25%" />
-					<col width="" />
-					<col width="30%" />
-				</colgroup>
-				<thead>
-					<tr>
-						<th scope="col">Date</th>
-						<th scope="col">Title</th> 
-						<th scope="col">Write</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr
-						v-for="list in 10"
-						:key="list"
-					>
-						<td>2024/07/19</td>
-						<td class="text-l">
-							<a href="#">Vibro Warning{{list}}</a>
-						</td>
-						<td>HQ Manage</td>
-					</tr>
-				</tbody>
-			</table>
+			<el-table
+			:data="tableData"
+			style="width: 100%">
+				<el-table-column
+				label="Date"
+				width="100">					
+					<template slot-scope="scope">						
+						{{ scope.row.date }}
+					</template>
+				</el-table-column>
+				<el-table-column
+				label="Title"
+				>
+					<template slot-scope="scope">
+						<router-link to="#" @click="handleGoDetail(scope.$index, scope.row)">{{ scope.row.title }}</router-link>
+					</template>
+				</el-table-column>
+				<el-table-column
+				label="Write"
+				width="100"
+				>
+					<template slot-scope="scope">
+						{{ scope.row.write }}
+					</template>
+				</el-table-column>
+			</el-table>		
 			<div class="bottom__pagination">
 				<el-pagination layout="prev, pager, next" :total="100" />			
 			</div>			
@@ -37,8 +37,71 @@
 	</div>
 </template>
 
-<script setup>
+<script>
+export default {
+	data() {
+		return {
+		tableData: [
+			{
+				date: '2024/07/19',
+				title: 'Vibro Warning',
+				write: 'HQ Manage'
+			}, 
+			{
+				date: '2024/07/19',
+				title: 'Vibro Warning',
+				write: 'HQ Manage'
+			}, 
+			{
+				date: '2024/07/19',
+				title: 'Vibro Warning',
+				write: 'HQ Manage'
+			}, 
+			{
+				date: '2024/07/19',
+				title: 'Vibro Warning',
+				write: 'HQ Manage'
+			}, 
+			{
+				date: '2024/07/19',
+				title: 'Vibro Warning',
+				write: 'HQ Manage'
+			}, 
+			{
+				date: '2024/07/19',
+				title: 'Vibro Warning',
+				write: 'HQ Manage'
+			}, 
+			{
+				date: '2024/07/19',
+				title: 'Vibro Warning',
+				write: 'HQ Manage'
+			}, 
+			{
+				date: '2024/07/19',
+				title: 'Vibro Warning',
+				write: 'HQ Manage'
+			}, 
+			{
+				date: '2024/07/19',
+				title: 'Vibro Warning',
+				write: 'HQ Manage'
+			}, 
+			{
+				date: '2024/07/19',
+				title: 'Vibro Warning',
+				write: 'HQ Manage'
+			}
+			]
+		}
+	},
+	methods: {
+		handleGoDetail(index, row) {
+			console.log(index, row);
+		},
+    },
 
+}
 </script>
 
 <style scoped>

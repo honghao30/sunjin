@@ -23,7 +23,7 @@
         flex-direction: column;
         justify-content: center;
         .bar {
-            width: 100%;
+            width: 80%;
             height: 2px;
             background-color: #fff;
         }
@@ -67,6 +67,39 @@
 }
 
 //board
+.el-table th.el-table__cell.is-leaf {
+    background: #E2E3E7;
+    height: 50px;
+    vertical-align: middle;
+    @media #{$phone} {
+        height: 36px;
+    }
+}
+.el-table th.el-table__cell>.cell {    
+    text-align: center;
+    @include fontoption(16px, #222222, bold, 16px);
+    @media #{$phone} {        
+        @include fontoption(14px, #222222, bold, 14px);
+    }    
+}
+.el-table--enable-row-transition .el-table__body td.el-table__cell {
+    padding: 20px 0;
+    vertical-align: middle;
+    background-color: #fff;
+    border-bottom: 1px solid #E1E3E9;
+    @include fontoption(16px, #717B8A, 300, 18px);
+    letter-spacing: -0.04em;
+    text-align: center;
+    @media #{$phone} {
+        padding: 12px 0;
+        @include fontoption(13px, #717B8A, 300, 13px);
+    }    
+}
+
+.el-table__footer-wrapper tbody td.el-table__cell {
+    text-align: right;
+    padding-right: 12px;
+}
 .table-list {
     width: 100%;
     thead {
@@ -224,7 +257,7 @@
         .button__wrap {
             display: flex;
             justify-content: flex-end;
-            width: 100%;
+            width: 50%;
             padding-right: 16px;
             .el-button--primary {
                 background: #0072BC;
@@ -255,6 +288,7 @@
         }
         .item-tit {
             width: 160px;
+            text-align: center;
             @media #{$phone} {
                 width: 80px
             }
@@ -602,7 +636,11 @@
 .el-upload-list  {
     display: none;
 }
-
+.el-dialog__headerbtn:focus .el-dialog__close, 
+.el-dialog__headerbtn:hover .el-dialog__close {color:#fff;}
+.el-input-number {
+    width: 90%;
+}
 // 대시보드
 .link-group {
     display: flex;
@@ -615,11 +653,12 @@
         padding: 32px 16px 32px; 
     }
     .card-group {
+        margin-top: 32px;
         display: flex;
-        gap: 16px;        
+        gap: 24px;        
         @media #{$phone} {
             flex-direction: column;
-            gap: 12px;
+            gap: 16px;
         }
         .el-col {           
             .el-card {
@@ -628,6 +667,9 @@
                     flex-direction: column;
                     justify-content: center;
                     gap: 20px;
+                    .el-main {
+                        padding:0;
+                    }
                     @media #{$phone} {
                         gap: 10px;
                     }
@@ -671,15 +713,25 @@
         text-align: center;
     }
     .el-button--text {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .text {
+            margin-top: 15px;
+        }
         @include fontoption(20px,#fff, 600, 18px);
         @media #{$phone} {
             @include fontoption(16px,#fff, 600, 18px);
         }
     }
     .el-card {
-        aspect-ratio: 1 /1;
+        aspect-ratio: 1 / 0.7;
         @media #{$phone} {
-            aspect-ratio: 1 / 0.5;
+            aspect-ratio: 1 / 0.3;
         }
         .el-card__body {
             height: 100%;
@@ -733,7 +785,7 @@
                     width: 100%;
                     height: 40px;
                     border-radius: 67px; 
-                    color: #ddd;
+                    color: #222;
                     padding-left: 37px;
                 }
             }
@@ -744,6 +796,31 @@
                 width: 100%;
                 border-radius: 67px;
             }
+        }
+    }
+}
+
+// 파일 업로드
+.upload-demo .el-upload {
+    margin-right: 20px;
+}
+.el-upload__tip {
+    color: #909399;
+    font-size: 12px;
+}
+.el-upload-list {
+    display: block;
+}
+.confirm-msg {
+    @include fontoption(16px,#222, 600, 18px);    
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+.el-dialog__wrapper {
+    &.no-header-modal {
+        .el-dialog__header {
+            display: none;
         }
     }
 }

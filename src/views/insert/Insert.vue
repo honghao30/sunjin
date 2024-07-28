@@ -129,221 +129,140 @@
                 <el-tabs v-model="activeName" type="border-card" @tab-click="handleClick">
                     <el-tab-pane label="Water Env." name="first">
                         <div class="detail-data">
-                            <table class="table table-body">
-                                <colgroup>
-                                    <col width="50%" />
-                                    <col width="" />
-                                </colgroup>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">Salinity</th>
-                                        <td>0.10</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">pH</th>
-                                        <td>7.61</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Vibrio in water</th>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Vibrio in Liver & Gut</th>
-                                        <td></td>
-                                    </tr>   
-                                    <tr>
-                                        <th scope="row">Shrimp Health</th>
-                                        <td></td>
-                                    </tr>  
-                                    <tr>
-                                        <th scope="row">Salinity</th>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">pH</th>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Vibrio in water</th>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Vibrio in Liver & Gut</th>
-                                        <td></td>
-                                    </tr>   
-                                    <tr>
-                                        <th scope="row">Shrimp Health</th>
-                                        <td></td>
-                                    </tr>                                                                                                                                                              
-                                </tbody>
-                            </table>
+                            <el-table :data="waterData" style="width: 100%">
+                                <el-table-column prop="type" label="Type">
+                                    <template slot-scope="scope">
+                                    {{ scope.row.type }}
+                                    </template>
+                                </el-table-column>
+                                <el-table-column label="Value">
+                                    <template slot-scope="scope">
+                                    <el-input-number 
+                                        v-if="scope.row.type !== 'Vibrio in Liver & Gut' && scope.row.type !== 'Shrimp Health'" 
+                                        v-model="scope.row.value" 
+                                        controls-position="right" 
+                                        :min="1" 
+                                        :max="10" 
+                                        :step="0.1">
+                                    </el-input-number>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
                         </div>
                     </el-tab-pane>
                     <el-tab-pane label="Vibrio" name="second">
-                        <table class="table table-list">
-                            <colgroup>
-                                <col width="25%" />
-                                <col width="25%" />
-                                <col width="25%" />
-                                <col width="25%" />
-                            </colgroup>
-                            <thead>
-                                <tr>
-                                    <th scope="col">Type</th>
-                                    <th scope="col">Water</th>
-                                    <th scope="col">Liver</th>
-                                    <th scope="col">Gut </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>White</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>                                        
-                                </tr>
-                                <tr>
-                                    <td>Purple</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>     
-                                <tr>
-                                    <td>Blue</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>                                        
-                                </tr> 
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td>Total</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>                                        
-                                </tr>                                    
-                            </tfoot>
-                        </table> 
+                        <el-table
+                            :data="vibrioData  "
+                            style="width: 100%"
+                            show-summary
+                            :summary-method="getSummaries">
+                            
+                            <el-table-column
+                                label="Type">
+                                <template slot-scope="scope">
+                                {{ scope.row.label }}
+                                </template>
+                            </el-table-column>
+                            
+                            <el-table-column
+                                prop="water"
+                                label="Water">
+                                <template slot-scope="scope">
+                                <el-input-number 
+                                    v-model="scope.row.water" 
+                                    controls-position="right" 
+                                    @change="handleChangeVal6" 
+                                    :min="1" 
+                                    :max="10" 
+                                    :step="0.1">
+                                </el-input-number>
+                                </template>
+                            </el-table-column>
+                            
+                            <el-table-column
+                                prop="liver"
+                                label="Liver">
+                                <template slot-scope="scope">
+                                <el-input-number 
+                                    v-model="scope.row.liver" 
+                                    controls-position="right" 
+                                    @change="handleChangeVal6" 
+                                    :min="1" 
+                                    :max="10" 
+                                    :step="0.1">
+                                </el-input-number>
+                                </template>
+                            </el-table-column>
+                            
+                            <el-table-column
+                                prop="gut"
+                                label="Gut">
+                                <template slot-scope="scope">
+                                <el-input-number 
+                                    v-model="scope.row.gut" 
+                                    controls-position="right" 
+                                    @change="handleChangeVal6" 
+                                    :min="1" 
+                                    :max="10" 
+                                    :step="0.1">
+                                </el-input-number>
+                                </template>
+                            </el-table-column>                            
+                        </el-table>
                     </el-tab-pane>
                     <el-tab-pane label="Health" name="third">
-                        <table class="table table-list">
-                            <colgroup>
-                                <col width="25%" />
-                                <col width="25%" />
-                                <col width="25%" />
-                                <col width="25%" />
-                            </colgroup>
-                            <thead>
-                                <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col">Bad</th>
-                                    <th scope="col">Normal </th>
-                                    <th scope="col">Good</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Liver </td>
-                                    <td><el-radio v-model="radio" label="1"><span class="blind">Bad</span></el-radio></td>
-                                    <td><el-radio v-model="radio" label="2"><span class="blind">Normal</span></el-radio></td>
-                                    <td><el-radio v-model="radio" label="3"><span class="blind">Good</span></el-radio></td>                                        
-                                </tr>
-                                <tr>
-                                    <td>Gut </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>     
-                                <tr>
-                                    <td>reserved</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>                                        
-                                </tr>        
-                                <tr>
-                                    <td>reserved</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>                                        
-                                </tr>                                                                                                                              
-                            </tbody>
-                        </table>
+                        <el-table :data="healthData" style="width: 100%">
+                            <el-table-column prop="type" label="">
+                                <template slot-scope="scope">
+                                {{ scope.row.type }}
+                                </template>
+                            </el-table-column>
+                            <el-table-column label="Bad">
+                                <template slot-scope="scope">
+                                <el-radio v-model="scope.row.radio" :label="1">
+                                    <span class="blind">Bad</span>
+                                </el-radio>
+                                </template>
+                            </el-table-column>
+                            <el-table-column label="Normal">
+                                <template slot-scope="scope">
+                                <el-radio v-model="scope.row.radio" :label="2">
+                                    <span class="blind">Normal</span>
+                                </el-radio>
+                                </template>
+                            </el-table-column>
+                            <el-table-column label="Good">
+                                <template slot-scope="scope">
+                                <el-radio v-model="scope.row.radio" :label="3">
+                                    <span class="blind">Good</span>
+                                </el-radio>
+                                </template>
+                            </el-table-column>
+                        </el-table>                       
+
                     </el-tab-pane>              
                     <el-tab-pane label="Photo" name="fourth">
-                        <table class="table table-body">
-                            <colgroup>
-                                <col width="33.3%" />
-                                <col width="33.3%" />
-                                <col width="*" />                                
-                            </colgroup>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Liver </th>
-                                    <td>0 picture(s) uploaded</td>
-                                    <td>
-                                        <el-upload
-                                            class="upload-demo"
-                                            action="https://jsonplaceholder.typicode.com/posts/"
-                                            :on-preview="handlePreview"
-                                            :on-remove="handleRemove"
-                                            :before-remove="beforeRemove"
-                                            multiple
-                                            :limit="3"
-                                            :on-exceed="handleExceed"
-                                            :file-list="fileList"
-                                        >
-                                            <el-button size="small" type="primary">Upload</el-button>                                            
-                                        </el-upload>                                        
-                                    </td>                                                                        
-                                </tr>
-                                <tr>
-                                    <th scope="row">Gut </th>
-                                    <td>0 picture(s) uploaded</td>
-                                    <td>
-                                        <el-upload
-                                            class="upload-demo"
-                                            action="https://jsonplaceholder.typicode.com/posts/"
-                                            :on-preview="handlePreview"
-                                            :on-remove="handleRemove"
-                                            :before-remove="beforeRemove"
-                                            multiple
-                                            :limit="3"
-                                            :on-exceed="handleExceed"
-                                            :file-list="fileList"
-                                        >
-                                            <el-button size="small" type="primary">Upload</el-button>                                            
-                                        </el-upload>                                         
-                                    </td>                                    
-                                </tr>     
-                                <tr>
-                                    <th scope="row">Whole</th>
-                                    <td>0 picture(s) uploaded</td>
-                                    <td>
-                                        <el-upload
-                                            class="upload-demo"
-                                            action="https://jsonplaceholder.typicode.com/posts/"
-                                            :on-preview="handlePreview"
-                                            :on-remove="handleRemove"
-                                            :before-remove="beforeRemove"
-                                            multiple
-                                            :limit="3"
-                                            :on-exceed="handleExceed"
-                                            :file-list="fileList"
-                                        >
-                                            <el-button size="small" type="primary">Upload</el-button>                                            
-                                        </el-upload>                                         
-                                    </td>                                                                          
-                                </tr>  
-                            </tbody>
-                        </table>
+                        <el-upload
+                        class="upload-demo"
+                        action="https://jsonplaceholder.typicode.com/posts/"
+                        :before-upload="beforeUpload"
+                        :on-preview="handlePreview"
+                        :on-remove="handleRemove"
+                        :file-list="fileList"
+                        list-type="picture"
+                        >
+                        <el-button size="small" type="primary">File upload</el-button>
+                        <div slot="tip" class="el-upload__tip">jpg/png files with a size less than 500kb</div>
+                        </el-upload>                      
                     </el-tab-pane>                           
                 </el-tabs> 
                 <div class="button__wrap is-bottom flex-end">
-                    <el-button type="info">Cancel</el-button>
-                    <el-button type="primary">Save</el-button>
+                    <el-button type="info" @click="openDialog('cancel')">Cancel</el-button>
+                    <el-button type="primary" @click="openDialog('save')">Save</el-button>
                 </div>                
             </div>
 		</div>
+        <!-- 모달 -->
         <el-dialog            
             :visible.sync="dialogVisible"
             class="data-insert no-title"            
@@ -362,7 +281,22 @@
             <el-button type="primary" @click="dialogVisible = false">OK</el-button>
         </span>
         </el-dialog>
-        
+        <!-- 메시지 -->
+        <el-dialog      
+         class="no-header-modal"  
+        :visible.sync="confirmDialog"
+        width="50%"
+        :before-close="cheCkModal">
+            <div class="confirm-msg">
+                {{ dialogMessage }}
+            </div>
+            <span slot="footer" class="dialog-footer">
+                <div class="button__wrap is-bottom flex-end">
+                    <el-button type="info" @click="confirmDialog = false">Cancel</el-button>
+                    <el-button type="primary" @click="confirmDialog = false">OK</el-button>
+                </div>         
+            </span>
+        </el-dialog>
 	</div>
 </template>
 
@@ -379,11 +313,29 @@ export default {
         SelectValue: '',
         dialogVisible: true,
         detailModal: false,
+        clickedButton: '',
         radio: '1',
         num: '2',
+        num1: '1.2',
+        num2: '1.2',
+        num3: '1.2',
+        num5: '1.2',
+        num6: '1.2',
+        num7: '1.2',
+        confirmDialog: false,
         fileList: [
-            { name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100' },
-            { name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100' }
+        {
+            name: 'food.jpeg',
+            url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100',
+            status: 'finished',
+            type: 'image/jpeg',
+            },
+            {
+            name: 'food2.jpeg',
+            url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100',
+            status: 'finished',
+            type: 'image/jpeg',
+            },
         ],
         options: [
             {
@@ -407,21 +359,67 @@ export default {
             label: 'Option5',
             },
         ],
+        waterData: [
+            { type: 'Salinity', value: 1 },
+            { type: 'pH', value: 1 },
+            { type: 'Vibrio in water', value: 1 },
+            { type: 'Vibrio in Liver & Gut', value: null },
+            { type: 'Shrimp Health', value: null },
+            { type: 'Salinity', value: null },
+            { type: 'pH', value: null },
+            { type: 'Vibrio in water', value: null },
+            { type: 'Vibrio in Liver & Gut', value: null },
+            { type: 'Shrimp Health', value: null }
+        ],        
+        healthData: [
+            { type: 'Liver', radio: 3 },
+            { type: 'Gut', radio: '' },
+            { type: 'reserved', radio: '' },
+            { type: 'reserved', radio: '' }
+        ],
+        vibrioData: [{
+            label: 'White',
+            water: 1.2,
+            liver: 1.2,
+            gut: 1.2
+            },
+            {
+            label: 'Liver',
+            water: 1.2,
+            liver: 1.2,
+            gut: 1.2
+            },
+            {
+            label: 'Gut',
+            water: 1.2,
+            liver: 1.2,
+            gut: 1.2
+            },
+            {
+            label: 'White',
+            water: 1.2,
+            liver: 1.2,
+            gut: 1.2
+            }
+        ]
+
         };
     },
+    computed: {
+    dialogMessage() {
+        return this.clickedButton === 'save'
+            ? '저장에 성공했습니다.'
+            : '취소를 확인했습니다.';
+    },
+    },
     methods: {
-        handleRemove(file, fileList) {
-        console.log(file, fileList);
-        },
-        handlePreview(file) {
-        console.log(file);
-        },
-        handleExceed(files, fileList) {
-        this.$message.warning(`The limit is 3, you selected ${files.length} files this time, add up to ${files.length + fileList.length} totally`);
-        },
-        beforeRemove(file, fileList) {
-        return this.$confirm(`Cancel the transfert of ${file.name} ?`);
-        },
+        cheCkModal(done) {
+            this.$confirm('Are you sure to close this dialog?')
+            .then(_ => {
+                done();
+            })
+            .catch(_ => {});
+        },  
         handleClose() {
         this.detailModal = false;
         },
@@ -433,6 +431,78 @@ export default {
         },
         handleChange(value) {
         console.log(value);
+        },
+        handleChangeVal1(value) {
+            console.log(value);
+        },
+        handleChangeVal2(value) {
+            console.log(value);
+        },
+        handleChangeVal3(value) {
+            console.log(value);
+        },   
+        handleChangeVal5(value) {
+            console.log(value);
+        },
+        handleChangeVal6(value) {
+            console.log(value);
+        },
+        handleChangeVal7(value) {
+            console.log(value);
+        },
+        
+        getSummaries(param) {
+            const { columns, data } = param;
+            const sums = [];
+
+            columns.forEach((column, index) => {
+                if (index === 0) {
+                sums[index] = 'Total';
+                return;
+                }
+                const values = data.map(item => Number(item[column.property]));
+                if (!values.every(value => isNaN(value))) {
+                sums[index] = values.reduce((prev, curr) => {
+                    const value = Number(curr);
+                    if (!isNaN(value)) {
+                    return prev + curr;
+                    } else {
+                    return prev;
+                    }
+                }, 0);
+                sums[index] = sums[index].toFixed(2); // 소수점 2자리까지만 노출
+                } else {
+                sums[index] = 'N/A';
+                }
+            });
+
+            return sums;
+        },
+
+        handlePreview(file) {
+            console.log(file);
+        },
+        handleRemove(file, fileList) {
+            console.log(file, fileList);
+        },
+        beforeUpload(file) {
+            const isJPGorPNG = file.type === 'image/jpeg' || file.type === 'image/png';
+            const isLt500KB = file.size / 1024 / 1024 < 0.5;
+
+            if (!isJPGorPNG) {
+                this.$message.error('Upload jpg/png files only!');
+            }
+            if (!isLt500KB) {
+                this.$message.error('File size should be less than 500kb!');
+            }
+            return isJPGorPNG && isLt500KB;
+        },
+        openDialog(buttonType) {
+            this.clickedButton = buttonType;
+            this.confirmDialog = true;
+        },
+        checkModal(done) {
+            done();
         },
     },
 };
