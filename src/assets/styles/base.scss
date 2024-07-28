@@ -77,7 +77,7 @@ body {
 .blind,.irtext { @include hiddens;}
 
 body {
-    overflow: hidden;
+    overflow-x: hidden;
     background: #EFF0F2;
 }
 

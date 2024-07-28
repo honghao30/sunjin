@@ -17,9 +17,19 @@
                                     <el-radio-button label="last Month" value="last Month" />
                                 </el-radio-group>    
                                 <div class="date-picker">
-                                    <el-input type="date" v-model="startDate" placeholder="Start Date" />     
-                                    <span>~</span>                                               
-                                    <el-input type="date" v-model="endDate" placeholder="End Date" /> 
+                                    <el-date-picker
+                                        v-model="startDate"
+                                        type="date"
+                                        placeholder="YYYY-MM-DD"
+                                        default-value="2010-10-01">
+                                    </el-date-picker>                                    
+                                    <span class="bar">~</span>          
+                                    <el-date-picker
+                                        v-model="endDate"
+                                        type="date"
+                                        placeholder="YYYY-MM-DD"
+                                        default-value="2010-10-01">
+                                    </el-date-picker>                                    
                                 </div>                                                                            
                             </div>
                         </div>
@@ -131,7 +141,10 @@
                         </div>
                     </div>    
                     <div class="button__wrap">
-                        <el-button type="primary">검색</el-button>
+                        <el-button type="primary">
+                            <i class="el-icon-search"></i>
+                            검색
+                        </el-button>
                     </div>              
                 </div>                         
             </div>
@@ -140,40 +153,46 @@
                 <el-tabs v-model="activeName" type="border-card" @tab-click="handleClick">
                     <el-tab-pane label="Date" name="first">
                         <div class="scroll-content">
-                            <table class="table table-list">
-                                <colgroup>
-                                    <col width="16%" />
-                                    <col width="16%" />
-                                    <col width="16%" />
-                                    <col width="16%" />
-                                    <col width="17%" />
-                                    <col width="" />                                    
-                                </colgroup>
-                                <thead>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Images</th>
-                                    <th scope="col">Vibrio Water</th>
-                                    <th scope="col">Vibrio Liver</th>
-                                    <th scope="col">Vibrio Gut</th>
-                                    <th scope="col">Write</th>                                    
-                                </thead>
-                                <tbody>
-                                    <tr
-                                        @click="dialogVisible = true"
-                                    >
-                                        <td>2024/07/19</td>
-                                        <td>
-                                            2
-                                        </td>
-                                        <td>                                         
-                                        </td>
-                                        <td></td>
-                                        <td></td>
-                                        <td class="text-l"></td>
-                                    </tr>
-                                </tbody>
-                            </table>                            
-
+                            <el-table
+                            :data="tableData"
+                            style="width: 100%"
+                            @row-click="dialogVisible = true"
+                            >
+                                <el-table-column
+                                    prop="date"
+                                    label="Date"
+                                    width="100"
+                                />
+                                <el-table-column
+                                    prop="images"
+                                    label="Images"
+                                    width="80"
+                                >
+                                    <template slot-scope="scope">
+                                    <span>{{ scope.row.images }}</span>
+                                    </template>
+                                </el-table-column>
+                                <el-table-column
+                                    prop="vibrioWater"
+                                    label="Vibrio Water"
+                                    width="110"
+                                />
+                                <el-table-column
+                                    prop="vibrioLiver"
+                                    label="Vibrio Liver"
+                                    width="110"
+                                />
+                                <el-table-column
+                                    prop="vibrioGut"
+                                    label="Vibrio Gut"
+                                    width="110"
+                                />
+                                <el-table-column
+                                    prop="write"
+                                    label="Write"
+                                    width=""
+                                />
+                            </el-table>
                         </div>
                     </el-tab-pane>
                     <el-tab-pane label="Trend Graph" name="second">
@@ -201,63 +220,39 @@
                         
                     </div>
                     <div class="detail-data">
-                        <table class="table table-body">
-                            <colgroup>
-                                <col width="50%" />
-                                <col width="" />
-                            </colgroup>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Salinity</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">pH</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Vibrio in water</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Vibrio in Liver & Gut</th>
-                                    <td></td>
-                                </tr>   
-                                <tr>
-                                    <th scope="row">Shrimp Health</th>
-                                    <td></td>
-                                </tr>  
-                                <tr>
-                                    <th scope="row">Salinity</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">pH</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Vibrio in water</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Vibrio in Liver & Gut</th>
-                                    <td></td>
-                                </tr>   
-                                <tr>
-                                    <th scope="row">Shrimp Health</th>
-                                    <td></td>
-                                </tr>                                                                                                                                                              
-                            </tbody>
-                        </table>
+                        <el-table
+                            :data="detailData"
+                            class="hide-thead"
+                            style="width: 100%"
+                            border
+                            >
+                            <el-table-column
+                                prop="parameter"
+                                label="Parameter"
+                                style="width: 50%"                                
+                            >
+                                <template slot-scope="scope">
+                                    <span>{{ scope.row.parameter }}</span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column
+                                prop="value"
+                                label="Value"
+                            >
+                                <template slot-scope="scope">
+                                <span>{{ scope.row.value }}</span>
+                                </template>
+                            </el-table-column>
+                        </el-table>                        
                     </div>
                     <!-- 테이블 -->
                     <div class="image-slider__wrap">
                         <swiper :options="swiperOption">
                             <swiper-slide>
-                                <img src="https://via.placeholder.com/600x300?text=Slide+1" alt="Slide 1">
+                                <img src="../../assets/image/1.jpg" alt="Slide 1">
                             </swiper-slide>
                             <swiper-slide>
-                                <img src="https://via.placeholder.com/600x300?text=Slide+2" alt="Slide 2">
+                                <img src="../../assets/image/1.jpg" alt="Slide 2">
                             </swiper-slide>
                             <div class="swiper-pagination" slot="pagination"></div>
 
@@ -292,6 +287,60 @@ export default {
         dialogVisible: false,
         detailModal: false,
         searchData: '2024/07/20',
+        detailData: [
+            { parameter: 'Salinity', value: '' },
+            { parameter: 'pH', value: '' },
+            { parameter: 'Vibrio in water', value: '' },
+            { parameter: 'Vibrio in Liver & Gut', value: '' },
+            { parameter: 'Shrimp Health', value: '' },
+            { parameter: 'Salinity', value: '' },
+            { parameter: 'pH', value: '' },
+            { parameter: 'Vibrio in water', value: '' },
+            { parameter: 'Vibrio in Liver & Gut', value: '' },
+            { parameter: 'Shrimp Health', value: '' },
+        ],        
+        tableData: [
+            {
+            date: '2024/07/19',
+            images: '2',
+            vibrioWater: '',
+            vibrioLiver: '',
+            vibrioGut: '',
+            write: '',
+            },
+            {
+            date: '2024/07/19',
+            images: '2',
+            vibrioWater: '',
+            vibrioLiver: '',
+            vibrioGut: '',
+            write: '',
+            },
+            {
+            date: '2024/07/19',
+            images: '2',
+            vibrioWater: '',
+            vibrioLiver: '',
+            vibrioGut: '',
+            write: '',
+            },
+            {
+            date: '2024/07/19',
+            images: '2',
+            vibrioWater: '',
+            vibrioLiver: '',
+            vibrioGut: '',
+            write: '',
+            },
+            {
+            date: '2024/07/19',
+            images: '2',
+            vibrioWater: '',
+            vibrioLiver: '',
+            vibrioGut: '',
+            write: '',
+            }
+        ],        
         swiperOption: {
             pagination: {
             el: '.swiper-pagination',

@@ -129,7 +129,7 @@
                 <el-tabs v-model="activeName" type="border-card" @tab-click="handleClick">
                     <el-tab-pane label="Water Env." name="first">
                         <div class="detail-data">
-                            <el-table :data="waterData" style="width: 100%">
+                            <el-table :data="waterData" style="width: 100%" class="hide-thead">
                                 <el-table-column prop="type" label="Type">
                                     <template slot-scope="scope">
                                     {{ scope.row.type }}
@@ -143,7 +143,7 @@
                                         controls-position="right" 
                                         :min="1" 
                                         :max="10" 
-                                        :step="0.1">
+                                        :step="0.01">
                                     </el-input-number>
                                     </template>
                                 </el-table-column>
@@ -151,64 +151,75 @@
                         </div>
                     </el-tab-pane>
                     <el-tab-pane label="Vibrio" name="second">
-                        <el-table
-                            :data="vibrioData  "
-                            style="width: 100%"
-                            show-summary
-                            :summary-method="getSummaries">
-                            
-                            <el-table-column
-                                label="Type">
-                                <template slot-scope="scope">
-                                {{ scope.row.label }}
-                                </template>
-                            </el-table-column>
-                            
-                            <el-table-column
-                                prop="water"
-                                label="Water">
-                                <template slot-scope="scope">
-                                <el-input-number 
-                                    v-model="scope.row.water" 
-                                    controls-position="right" 
-                                    @change="handleChangeVal6" 
-                                    :min="1" 
-                                    :max="10" 
-                                    :step="0.1">
-                                </el-input-number>
-                                </template>
-                            </el-table-column>
-                            
-                            <el-table-column
-                                prop="liver"
-                                label="Liver">
-                                <template slot-scope="scope">
-                                <el-input-number 
-                                    v-model="scope.row.liver" 
-                                    controls-position="right" 
-                                    @change="handleChangeVal6" 
-                                    :min="1" 
-                                    :max="10" 
-                                    :step="0.1">
-                                </el-input-number>
-                                </template>
-                            </el-table-column>
-                            
-                            <el-table-column
-                                prop="gut"
-                                label="Gut">
-                                <template slot-scope="scope">
-                                <el-input-number 
-                                    v-model="scope.row.gut" 
-                                    controls-position="right" 
-                                    @change="handleChangeVal6" 
-                                    :min="1" 
-                                    :max="10" 
-                                    :step="0.1">
-                                </el-input-number>
-                                </template>
-                            </el-table-column>                            
-                        </el-table>
+                        <div class="scroll-content">
+                            <el-table
+                                :data="vibrioData  "
+                                style="width: 100%"
+                                show-summary
+                                :summary-method="getSummaries">
+                                
+                                <el-table-column
+                                    label="Type"
+                                    width="100"
+                                    fixed
+                                >
+                                    <template slot-scope="scope">
+                                    {{ scope.row.label }}
+                                    </template>
+                                </el-table-column>
+                                
+                                <el-table-column
+                                    prop="water"
+                                    label="Water"
+                                    width="150"
+                                >
+                                    <template slot-scope="scope">
+                                    <el-input-number 
+                                        v-model="scope.row.water" 
+                                        controls-position="right" 
+                                        @change="handleChangeVal6" 
+                                        :min="1" 
+                                        :max="10" 
+                                        :step="0.01">
+                                    </el-input-number>
+                                    </template>
+                                </el-table-column>
+                                
+                                <el-table-column
+                                    prop="liver"
+                                    label="Liver"                                    
+                                    width="150"
+                                >
+                                    <template slot-scope="scope">
+                                    <el-input-number 
+                                        v-model="scope.row.liver" 
+                                        controls-position="right" 
+                                        @change="handleChangeVal6" 
+                                        :min="1" 
+                                        :max="10" 
+                                        :step="0.01">
+                                    </el-input-number>
+                                    </template>
+                                </el-table-column>
+                                
+                                <el-table-column
+                                    prop="gut"
+                                    label="Gut"
+                                    width="150"
+                                >
+                                    <template slot-scope="scope">
+                                    <el-input-number 
+                                        v-model="scope.row.gut" 
+                                        controls-position="right" 
+                                        @change="handleChangeVal6" 
+                                        :min="1" 
+                                        :max="10" 
+                                        :step="0.01">
+                                    </el-input-number>
+                                    </template>
+                                </el-table-column>                            
+                            </el-table>
+                        </div>
                     </el-tab-pane>
                     <el-tab-pane label="Health" name="third">
                         <el-table :data="healthData" style="width: 100%">
@@ -257,8 +268,13 @@
                     </el-tab-pane>                           
                 </el-tabs> 
                 <div class="button__wrap is-bottom flex-end">
-                    <el-button type="info" @click="openDialog('cancel')">Cancel</el-button>
-                    <el-button type="primary" @click="openDialog('save')">Save</el-button>
+                    <el-button type="info" @click="openDialog('cancel')">
+                        <i class="el-icon-close"></i>
+                        Cancel
+                    </el-button>
+                    <el-button type="primary" @click="openDialog('save')">
+                        <i class="el-icon-document-checked"></i>
+                        Save</el-button>
                 </div>                
             </div>
 		</div>
@@ -271,7 +287,7 @@
             <div class="data-insert-form">
                 <div class="tit">Salinity</div>
                 <div class="input-wrap">
-                    <el-input-number v-model="num" controls-position="right" @change="handleChange" :min="1" :max="10"></el-input-number>                    
+                    <el-input-number v-model="num" controls-position="right" @change="handleChange" :min="1" :max="10" :step="0.01"></el-input-number>                    
                 </div>
             </div>
         </div>
@@ -283,12 +299,12 @@
         </el-dialog>
         <!-- 메시지 -->
         <el-dialog      
-         class="no-header-modal"  
-        :visible.sync="confirmDialog"
-        width="50%"
-        :before-close="cheCkModal">
-            <div class="confirm-msg">
-                {{ dialogMessage }}
+            class="no-header-modal"  
+            :visible.sync="confirmDialog"
+            width="80%"
+            :before-close="cheCkModal">
+            <div class="confirm-msg" >
+                <i :class="dialogIcon"></i> <span :class="dialogType">{{ dialogMessage }}</span>
             </div>
             <span slot="footer" class="dialog-footer">
                 <div class="button__wrap is-bottom flex-end">
@@ -406,11 +422,21 @@ export default {
         };
     },
     computed: {
-    dialogMessage() {
-        return this.clickedButton === 'save'
-            ? '저장에 성공했습니다.'
-            : '취소를 확인했습니다.';
-    },
+        dialogMessage() {
+            return this.clickedButton === 'save'
+                ? '저장에 성공했습니다.'
+                : '오류가 확인했습니다.';
+        },
+        dialogIcon() {
+            return this.clickedButton === 'save'
+                ? 'el-icon-circle-check color-success' // 성공 아이콘 클래스
+                : 'el-icon-warning-outline color-error';  // 오류 아이콘 클래스
+        },
+        dialogType()  {
+            return this.clickedButton === 'save'
+                ? 'color-success' // 성공 아이콘 클래스
+                : 'color-error';  // 오류 아이콘 클래스
+        }      
     },
     methods: {
         cheCkModal(done) {

@@ -25,7 +25,10 @@
 					<el-input placeholder="Password" v-model="passWord" show-password></el-input>
 				</div>
 				<div class="button__wrap">
-					<el-button type="primary" @click="handleLogin">Login</el-button>
+					<el-button type="primary" @click="handleLogin">
+						<i class="el-icon-lock"></i>
+						Login
+					</el-button>
 				</div>
 			</form>
 		</div>

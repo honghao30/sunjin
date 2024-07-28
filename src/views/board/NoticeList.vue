@@ -6,7 +6,9 @@
 		<div class="content">
 			<el-table
 			:data="tableData"
-			style="width: 100%">
+			style="width: 100%"
+			class="notice-list"
+			>
 				<el-table-column
 				label="Date"
 				width="100">					
@@ -14,7 +16,7 @@
 						{{ scope.row.date }}
 					</template>
 				</el-table-column>
-				<el-table-column
+				<el-table-column				
 				label="Title"
 				>
 					<template slot-scope="scope">
