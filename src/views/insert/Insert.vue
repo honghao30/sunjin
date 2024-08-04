@@ -126,7 +126,7 @@
             </div>
             <!-- 검색 -->
             <div class="tabs-cont__wrap">
-                <el-tabs v-model="activeName" type="border-card" @tab-click="handleClick">
+                <el-tabs v-model="activeName" type="border-card" @tab-click="handleTabClick">
                     <el-tab-pane label="Water Env." name="first">
                         <div class="detail-data">
                             <el-table :data="waterData" style="width: 100%" class="hide-thead">
@@ -151,7 +151,7 @@
                         </div>
                     </el-tab-pane>
                     <el-tab-pane label="Vibrio" name="second">
-                        <div class="scroll-content">
+                        <!-- <div class="scroll-content only-x ">
                             <el-table
                                 :data="vibrioData  "
                                 style="width: 100%"
@@ -219,52 +219,141 @@
                                     </template>
                                 </el-table-column>                            
                             </el-table>
-                        </div>
+                        </div> -->
+                        <div class="detail-data">
+                            <el-table
+                                :data="vibrioData  "
+                                style="width: 100%"
+                                show-summary
+                                class="tbody-th-cell" 
+                                :summary-method="getSummaries">
+                                
+                                <el-table-column
+                                    label="Type"
+                                    style="width: 25%"
+                                >
+                                    <template slot-scope="scope">
+                                    {{ scope.row.label }}
+                                    </template>
+                                </el-table-column>
+                                
+                                <el-table-column
+                                    prop="water"
+                                    label="Water"
+                                    style="width: 25%"
+                                >
+                                    <template slot-scope="scope">
+                                    <el-input-number 
+                                        v-model="scope.row.water" 
+                                        controls-position="right" 
+                                        @change="handleChangeVal6" 
+                                        :min="1" 
+                                        :max="10" 
+                                        :step="0.01">
+                                    </el-input-number>
+                                    </template>
+                                </el-table-column>
+                                
+                                <el-table-column
+                                    prop="liver"
+                                    label="Liver"                                    
+                                    style="width: 25%"
+                                >
+                                    <template slot-scope="scope">
+                                    <el-input-number 
+                                        v-model="scope.row.liver" 
+                                        controls-position="right" 
+                                        @change="handleChangeVal6" 
+                                        :min="1" 
+                                        :max="10" 
+                                        :step="0.01">
+                                    </el-input-number>
+                                    </template>
+                                </el-table-column>
+                                
+                                <el-table-column
+                                    prop="gut"
+                                    label="Gut"
+                                    style="width: 25%"
+                                >
+                                    <template slot-scope="scope">
+                                    <el-input-number 
+                                        v-model="scope.row.gut" 
+                                        controls-position="right" 
+                                        @change="handleChangeVal6" 
+                                        :min="1" 
+                                        :max="10" 
+                                        :step="0.01">
+                                    </el-input-number>
+                                    </template>
+                                </el-table-column>                            
+                            </el-table>
+                        </div>                        
                     </el-tab-pane>
                     <el-tab-pane label="Health" name="third">
-                        <el-table :data="healthData" style="width: 100%">
-                            <el-table-column prop="type" label="">
+                        <el-table :data="healthData" class="tbody-th-cell" style="width: 100%">
+                            <el-table-column prop="type" label="" :min-width="20">
                                 <template slot-scope="scope">
                                 {{ scope.row.type }}
                                 </template>
                             </el-table-column>
-                            <el-table-column label="Bad">
+                            <el-table-column label="Bad" :min-width="18">
                                 <template slot-scope="scope">
                                 <el-radio v-model="scope.row.radio" :label="1">
                                     <span class="blind">Bad</span>
                                 </el-radio>
                                 </template>
                             </el-table-column>
-                            <el-table-column label="Normal">
+                            <el-table-column label="Normal"  :min-width="24">
                                 <template slot-scope="scope">
                                 <el-radio v-model="scope.row.radio" :label="2">
                                     <span class="blind">Normal</span>
                                 </el-radio>
                                 </template>
                             </el-table-column>
-                            <el-table-column label="Good">
+                            <el-table-column label="Good"  :min-width="18">
                                 <template slot-scope="scope">
                                 <el-radio v-model="scope.row.radio" :label="3">
                                     <span class="blind">Good</span>
                                 </el-radio>
                                 </template>
                             </el-table-column>
+                            <el-table-column label="비고" :min-width="20">
+                                <template slot-scope="scope">
+                                    <el-input placeholder="note" class="note-input"  v-model="scope.row.note1"></el-input>
+                                </template>
+                            </el-table-column>                            
                         </el-table>                       
 
                     </el-tab-pane>              
                     <el-tab-pane label="Photo" name="fourth">
-                        <el-upload
-                        class="upload-demo"
-                        action="https://jsonplaceholder.typicode.com/posts/"
-                        :before-upload="beforeUpload"
-                        :on-preview="handlePreview"
-                        :on-remove="handleRemove"
-                        :file-list="fileList"
-                        list-type="picture"
-                        >
-                        <el-button size="small" type="primary">File upload</el-button>
-                        <div slot="tip" class="el-upload__tip">jpg/png files with a size less than 500kb</div>
-                        </el-upload>                      
+                        <el-table :data="photoData" class="tbody-th-cell" style="width: 100%">
+                            <el-table-column prop="type" label="" :min-width="20">
+                                <template slot-scope="scope">
+                                {{ scope.row.type }}
+                                </template>
+                            </el-table-column>                            
+                            <el-table-column label="upload" :min-width="30">
+                                <template slot-scope="scope">
+                                    <el-upload
+                                        action="https://jsonplaceholder.typicode.com/posts/"
+                                        list-type="picture-card"
+                                        :file-list="getFileList(scope.row)"
+                                        :on-preview="file => handlePictureCardPreview(scope.row, file)"
+                                        :on-remove="file => handleRemove(scope.row, file)">
+                                        <i class="el-icon-plus"></i>
+                                    </el-upload>
+                                    <el-dialog :visible.sync="scope.row.photoVisible">
+                                        <img width="100%" :src="scope.row.dialogImageUrl" alt="">
+                                    </el-dialog>
+                                </template>
+                            </el-table-column>
+                            <el-table-column label="비고" :min-width="40">
+                                <template slot-scope="scope">
+                                    <el-input type="textarea" class="text-mx90" v-model="scope.row.note3"></el-input>                                    
+                                </template>
+                            </el-table-column>                            
+                        </el-table>                        
                     </el-tab-pane>                           
                 </el-tabs> 
                 <div class="button__wrap is-bottom flex-end">
@@ -327,7 +416,7 @@ export default {
         province: '',
         activeName: 'first',
         SelectValue: '',
-        dialogVisible: true,
+        dialogVisible: false,
         detailModal: false,
         clickedButton: '',
         radio: '1',
@@ -388,10 +477,10 @@ export default {
             { type: 'Shrimp Health', value: null }
         ],        
         healthData: [
-            { type: 'Liver', radio: 3 },
-            { type: 'Gut', radio: '' },
-            { type: 'reserved', radio: '' },
-            { type: 'reserved', radio: '' }
+            { type: 'Liver', radio: 3, note1: '' },
+            { type: 'Gut', radio: '', note1: '' },
+            { type: 'reserved', radio: '', note1: '' },
+            { type: 'reserved', radio: '', note1: '' }
         ],
         vibrioData: [{
             label: 'White',
@@ -416,6 +505,31 @@ export default {
             water: 1.2,
             liver: 1.2,
             gut: 1.2
+            }
+        ],
+        photoData: [
+            { 
+            type: 'Liver', 
+            dialogImageUrl: 'https://cdn.pixabay.com/photo/2024/07/03/08/05/hot-air-balloon-8869138_1280.jpg', 
+            note3: '', 
+            photoVisible: false,
+            fileList: [
+                { name: 'hot-air-balloon.jpg', url: 'https://cdn.pixabay.com/photo/2024/07/03/08/05/hot-air-balloon-8869138_1280.jpg' }
+            ]
+            },
+            { 
+            type: 'Gut', 
+            dialogImageUrl: '', 
+            note3: '', 
+            photoVisible: false,
+            fileList: []
+            },
+            { 
+            type: 'Whole', 
+            dialogImageUrl: '', 
+            note3: '', 
+            photoVisible: false,
+            fileList: []
             }
         ]
 
@@ -449,6 +563,9 @@ export default {
         handleClose() {
         this.detailModal = false;
         },
+        handleTabClick(tab) {
+            console.log(tab.name)
+        },   
         handleClick() {
         console.log('handleClick');
         },
@@ -508,21 +625,6 @@ export default {
         handlePreview(file) {
             console.log(file);
         },
-        handleRemove(file, fileList) {
-            console.log(file, fileList);
-        },
-        beforeUpload(file) {
-            const isJPGorPNG = file.type === 'image/jpeg' || file.type === 'image/png';
-            const isLt500KB = file.size / 1024 / 1024 < 0.5;
-
-            if (!isJPGorPNG) {
-                this.$message.error('Upload jpg/png files only!');
-            }
-            if (!isLt500KB) {
-                this.$message.error('File size should be less than 500kb!');
-            }
-            return isJPGorPNG && isLt500KB;
-        },
         openDialog(buttonType) {
             this.clickedButton = buttonType;
             this.confirmDialog = true;
@@ -530,6 +632,21 @@ export default {
         checkModal(done) {
             done();
         },
+
+        getFileList(row) {
+        return row.fileList;
+        },
+        handleRemove(row, file) {
+        row.fileList = row.fileList.filter(f => f.url !== file.url);
+        if (row.dialogImageUrl === file.url) {
+            row.dialogImageUrl = '';
+        }
+        console.log(file);
+        },
+        handlePictureCardPreview(row, file) {
+        row.dialogImageUrl = file.url;
+        row.photoVisible = true;
+        }    
     },
 };
 </script>

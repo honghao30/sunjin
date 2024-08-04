@@ -150,7 +150,7 @@
             </div>
             <!-- 검색 -->
             <div class="tabs-cont__wrap">
-                <el-tabs v-model="activeName" type="border-card" @tab-click="handleClick">
+                <el-tabs v-model="activeName" type="border-card" class="type-two-items" @tab-click="handleClick">
                     <el-tab-pane label="Date" name="first">
                         <div class="scroll-content">
                             <el-table
@@ -180,17 +180,17 @@
                                 <el-table-column
                                     prop="vibrioLiver"
                                     label="Vibrio Liver"
-                                    width="110"
+                                    width="190"
                                 />
                                 <el-table-column
                                     prop="vibrioGut"
                                     label="Vibrio Gut"
-                                    width="110"
+                                    width="180"
                                 />
                                 <el-table-column
                                     prop="write"
                                     label="Write"
-                                    width=""
+                                    width="110"
                                 />
                             </el-table>
                         </div>
@@ -212,11 +212,10 @@
         >
         <div class="modal-content">
                     <div class="data-select">
-                        <el-date-picker
-                            v-model="searchData"
-                            type="date"
-                            placeholder="Date">
-                        </el-date-picker>                        
+                        <div class="data-title">
+                            <i class="el-icon-date"></i>
+                            2024-07-20
+                        </div>
                         
                     </div>
                     <div class="detail-data">

@@ -106,3 +106,9 @@ body {
     background: rgba(101,106,118,.3);
     border-radius: 2px;
 }
+body{
+-ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+    display: none;
+}

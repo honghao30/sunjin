@@ -11,7 +11,8 @@
 			>
 				<el-table-column
 				label="Date"
-				width="100">					
+				:min-width="35"				
+				>					
 					<template slot-scope="scope">						
 						{{ scope.row.date }}
 					</template>
@@ -25,7 +26,7 @@
 				</el-table-column>
 				<el-table-column
 				label="Write"
-				width="100"
+				:min-width="35"				
 				>
 					<template slot-scope="scope">
 						{{ scope.row.write }}
