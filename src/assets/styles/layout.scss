@@ -413,14 +413,7 @@
     background-color: #35AD68;
     border: 1px solid #35AD68;
 }
-.el-upload-list {
-    width: 120px;
-    margin: 0 auto 10px;
-    @media #{$phone} {
-        width: 100px;
-        height: 100px;   
-    }
-}
+
 .el-cascader-menu:last-child .el-cascader-node, .el-tabs--bottom .el-tabs--left>.el-tabs__header .el-tabs__item:last-child, .el-tabs--bottom .el-tabs--right>.el-tabs__header .el-tabs__item:last-child, .el-tabs--bottom.el-tabs--border-card>.el-tabs__header .el-tabs__item:last-child, .el-tabs--bottom.el-tabs--card>.el-tabs__header .el-tabs__item:last-child, .el-tabs--top .el-tabs--left>.el-tabs__header .el-tabs__item:last-child, .el-tabs--top .el-tabs--right>.el-tabs__header .el-tabs__item:last-child, .el-tabs--top.el-tabs--border-card>.el-tabs__header .el-tabs__item:last-child, .el-tabs--top.el-tabs--card>.el-tabs__header .el-tabs__item:last-child
 {
     padding-right: 0;
@@ -440,6 +433,9 @@
     img {
         width: 100%;
     }
+}
+.el-upload-list__item+.el-upload-list__item {
+    margin-left: 12px;
 }
 // el reset
 .el-input > .el-input__inner {
@@ -738,7 +734,7 @@
                 top: 0;
                 width: 34px;
                 height: 34px;
-                background: #fff url(/img/ico_close.f4910426.svg) no-repeat center;
+                background: #fff url('../image/icon/ico_close.svg') no-repeat center;
                 background-size: 20px auto;
                 border: 0;
                 padding: 0;
@@ -763,6 +759,22 @@
 .el-upload-list  {
     display: none;
 }
+.el-table td.el-table__cell div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+// .el-upload-list {
+//     width: 120px; 
+//     @media #{$phone} {
+//         width: 100px;
+//         height: 100px;   
+//     }
+// }
+
 .el-dialog__headerbtn:focus .el-dialog__close, 
 .el-dialog__headerbtn:hover .el-dialog__close {color:#fff;}
 .el-input-number {
